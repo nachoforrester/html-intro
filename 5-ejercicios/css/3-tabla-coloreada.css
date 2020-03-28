@@ -1,0 +1,17 @@
+.table {
+  border: solid;
+  border-width: 1px;
+}
+
+.table th {
+  background-color: blue;
+  color: white;
+}
+
+.table tr:nth-child(odd) {
+  background-color: orange;
+}
+
+.table tr:nth-child(even) {
+  background-color: yellow;
+}

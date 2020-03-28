@@ -1,0 +1,14 @@
+div {
+  border: 1px solid black;
+}
+p {
+  width: 35%;
+}
+
+p::first-letter {
+  font-size: 150%;
+}
+
+p::first-line {
+  color: lightblue;
+}

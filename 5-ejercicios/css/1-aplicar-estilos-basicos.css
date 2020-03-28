@@ -1,0 +1,21 @@
+.general {
+  display: flex;
+}
+
+.primero {
+  background-color: red;
+  color: white;
+}
+
+.segundo {
+  border-style: solid;
+  border-color: blue;
+  border-width: 1px;
+  border-radius: 16px;
+}
+
+.tercero {
+  background-color: red;
+  font-style: italic;
+  font-weight: bold;
+}

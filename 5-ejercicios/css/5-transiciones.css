@@ -1,0 +1,18 @@
+.clase-transicion {
+  height: 200px;
+  width: 200px;
+  background-color: red;
+  border-radius: 50%;
+  display: inline-block;
+  transition: width 2s, height 2s, background-color 2s, transform 2s;
+}
+
+.clase-transicion:hover {
+  transition-timing-function: ease;
+  transition-duration: 1s;
+  height: 200px;
+  width: 200px;
+  background-color: green;
+  border-radius: 10%;
+  display: inline-block;
+}
