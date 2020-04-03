@@ -32,9 +32,18 @@ function extractButtonHandler() {
 function confirmButtonHandler() {
   if (
     !isNaN(inputAmountElement.value) &&
-    parseInt(inputAmountElement.value) !== 0
+    parseInt(inputAmountElement.value) !== 0 &&
+    inputAmountElement.value !== ""
   ) {
-    alidateAndExecuteOperation();
+    if (validateAndExecuteOperation()) {
+      balanceElement.innerText =
+        "$" +
+        balanceTotal
+          .toFixed(2)
+          .toString()
+          .replace(".", ",");
+      overlayOff();
+    }
   } else {
     alert(
       "Por favor ingresar un monto válido. El decimal es un punto, no una coma. El monto no puede ser igual a 0."
@@ -51,7 +60,7 @@ function getNewDate() {
   return nDate;
 }
 
-function addNewLineToTable(value) {
+function addNewLineToTable(value, styleName) {
   balanceTotal = balanceTotal + parseFloat(value);
   let newBalanceFormatted = balanceTotal
     .toFixed(2)
@@ -66,30 +75,30 @@ function addNewLineToTable(value) {
   let newRow = document.createElement("tr");
 
   let htmlString = "<td>" + newDate + "</td>";
-  if (value > 0) {
-    htmlString =
-      htmlString + '<td class="text-success">$' + valueFormatted + "</td>";
-  } else {
-    htmlString =
-      htmlString + '<td class="text-danger">$' + valueFormatted + "</td>";
-  }
+  htmlString =
+    htmlString +
+    '<td class="text-' +
+    styleName +
+    '">$' +
+    valueFormatted +
+    "</td>";
   htmlString = htmlString + "<tr><td>$" + newBalanceFormatted + "</td>";
   newRow.innerHTML = htmlString;
 
   tableBody.append(newRow);
-  balanceTotal = newBalance;
 }
 
 function validateAndExecuteOperation() {
   if (operation === "deposit") {
-    addNewLineToTable(inputAmountElement.value);
-    overlayOff();
+    addNewLineToTable(inputAmountElement.value, "success");
+    return true;
   } else if (operation === "extraction") {
     if (inputAmountElement.value > balanceTotal) {
       alert("No tienes fondos suficientes.");
+      return false;
     } else {
-      addNewLineToTable(inputAmountElement.value * -1);
-      overlayOff();
+      addNewLineToTable(inputAmountElement.value * -1, "danger");
+      return true;
     }
   }
 }
