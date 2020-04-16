@@ -32,16 +32,12 @@ function extractButtonHandler() {
 function confirmButtonHandler() {
   if (
     !isNaN(inputAmountElement.value) &&
-    parseInt(inputAmountElement.value) !== 0 &&
+    parseInt(inputAmountElement.value) > 0 &&
     inputAmountElement.value !== ""
   ) {
     if (validateAndExecuteOperation()) {
       balanceElement.innerText =
-        "$" +
-        balanceTotal
-          .toFixed(2)
-          .toString()
-          .replace(".", ",");
+        "$" + balanceTotal.toFixed(2).toString().replace(".", ",");
       overlayOff();
     }
   } else {
